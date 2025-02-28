@@ -54,8 +54,10 @@
   
   <?php
 
-  include "modulos/cabezote.php"
+  include "modulos/cabezote.php";
 
+
+  include "modulos/menu.php";
 
   ?>
 
