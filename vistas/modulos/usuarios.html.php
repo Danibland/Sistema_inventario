@@ -178,7 +178,7 @@
 
                   </div>
 
-                  <!-- INGRESA R USUARIO  -->
+                  <!-- INGRESAR USUARIO  -->
 
                    <div class="form-group">
                     
@@ -244,27 +244,22 @@
 
                   </div>
 
-               <!--=====================================
-                PIE DEL MODAL
-                ======================================-->
 
-                <div class="modal-footer">
 
-                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-                  <button type="submit" class="btn btn-primary">Guardar</button>
-
-                </div>
-
-                <?php
-
-                  $crearUsuario = new ControladorUsuarios();
-                  $crearUsuario -> ctrCrearUsuario();
-
-                ?>
                 </div>
 
                
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+
+                <button type="submit" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+
+            </div>
 
           </form>
 
