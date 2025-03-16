@@ -47,29 +47,61 @@ class ControladorUsuarios{
     =============================================*/
 
 
-    static public function ctrCrearUsuario() {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+   static public function ctrCrearUsuario() {
 
-            if (!empty($_POST["nuevoUsuario"]) && 
-                !empty($_POST["nuevoNombre"]) && 
-                !empty($_POST["nuevoPassword"])) {
 
-                if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"]) &&
-                    preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoUsuario"]) &&
-                    preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoPassword"])) {
-                    
-                    echo '<script>alert("dentro del if");</script>';
+    if ($_SERVER["REQUEST_METHOD"] == "POST") { 
+    if (!empty($_POST["nuevoUsuario"]) && 
+        !empty($_POST["nuevoNombre"]) && 
+        !empty($_POST["nuevoPassword"])) {
 
-                } else {
-                   
-                    echo '<script>alert("Formato incorrecto en los campos!:C");</script>';
+        if (preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nuevoNombre"]) &&
+            preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoUsuario"]) &&
+            preg_match('/^[a-zA-Z0-9]+$/', $_POST["nuevoPassword"])) {
 
-                }
+            $tabla = "usuarios";
 
-            }    
-         
-         }   
+            
+            $datos = array(
+                "nombre" => $_POST["nuevoNombre"],
+                "usuario" => $_POST["nuevoUsuario"],
+                "password" => $_POST["nuevoPassword"],
+                "perfil" => $_POST["nuevoPerfil"]
+            );
+
+            $respuesta = ModeloUsuarios::mdlIngresarUsuarios($tabla, $datos);
+
+            if ($respuesta == "ok") {
+                echo '<script>
+                    Swal.fire({
+                        title: "Usuario guardado",
+                        icon: "success"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location = "usuarios";
+                        }
+                    });
+                </script>';
+            }
+
+        } else {
+            echo '<script>
+                Swal.fire({
+                    title: "Error en los datos",
+                    text: "Por favor, verifica los campos",
+                    icon: "error"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location = "usuarios";
+                    }
+                });
+            </script>';
+        }
     }
-
-
 }
+
+    }
+}
+
+
+
